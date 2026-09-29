@@ -1,0 +1,33 @@
+# SANITIZED FortiGate 500E config — FG-500E-LAB
+# FortiOS 7.0.17 build 0682
+# Date: 2026-09-28
+# NOTE: Passwords, keys, serial numbers, and public IPs removed.
+
+config system global
+    set hostname "FG-500E-LAB"
+end
+
+config system interface
+    edit "mgmt"
+        set ip 192.168.1.99 255.255.255.0
+        set allowaccess ping https ssh
+    next
+    edit "port1"
+        set ip 192.168.10.1 255.255.255.0
+        set allowaccess ping https ssh
+    next
+end
+
+config system dhcp server
+    edit 1
+        set interface "port1"
+        set range 192.168.10.100 192.168.10.200
+        set netmask 255.255.255.0
+        set default-gateway 192.168.10.1
+        set dns-service default
+        set lease-time 604800
+    next
+end
+
+# Routing: only directly connected at this phase (no default route)
+# Firewall policies: none (implicit deny only)
