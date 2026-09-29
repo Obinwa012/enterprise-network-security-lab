@@ -1,0 +1,17 @@
+# SANITIZED Cisco Catalyst C9200 relevant config
+# Date: 2026-09-28
+
+interface GigabitEthernet1/0/2
+ description Uplink to FortiGate port1
+ switchport mode access
+ switchport access vlan 1
+ speed 1000
+ duplex full
+
+interface GigabitEthernet1/0/1
+ description Endpoint NIC2
+ switchport mode access
+ switchport access vlan 1
+
+# Verification: show interfaces status | include Gi1/0/2
+# Gi1/0/2 connected, 1 Gbps, full duplex, access VLAN 1
